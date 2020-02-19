@@ -1,0 +1,107 @@
+	h1 {
+		font-size: 30px;
+	}
+	h2 {
+		color: white;
+		font-size: 20px;
+	}
+	main {
+		font-family:  sans-serif;
+		color: white;
+		background: #1C86EE;
+		max-width: 900px;
+		text-align: center;
+	}
+	.navbar {
+		left: 0;
+	}
+	.thin-red-border {
+		border-color: red;
+		border-width: 5px;
+		border-style: solid;
+		border-radius: 60%;
+		margin-left: 100px;
+		margin-right: 100px;
+	}
+	.gray-box {
+		border-color: gray;
+		border-width: 3px;
+		border-style: solid;
+		background-color: gray;
+		margin-right: 800px;
+	}
+	.red-background {
+		background-color: #f44336;
+	}
+	.green-background {
+		background-color: #4CAF50;
+	}
+	.blue-background {
+		background-color: #4169E1;
+	}
+	.black-background {
+		background-color: #555555;
+	}
+	.center {
+		text-align: center;
+	}
+	
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		
+	}
+	li {
+		float: left;
+	}
+	li a {
+		display: block;
+		color: white;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+	}
+	li a:hover {
+		background-color: #ff87c3;
+	}
+	.font-size {
+		font-size: 18px;
+	}
+	.button {
+		border: none;
+		color: white;
+		padding: 10px 40px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 18px;
+		border-radius: 4px;
+	}
+	.submit-button {
+		border: none;
+		color: white;
+		padding: 5px 10px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 18px;
+		border-radius: 4px;
+	}
+	
+	.highlight {
+		color: #f44336;
+	}
+
+	.sidebar-nav {
+		margin-top: 20px;
+		padding: 0;
+		list-style: none;
+		background-color: #9172ff;
+	}
+
+	.dynamic {
+		display: table;
+		margin: 0 auto;
+	}

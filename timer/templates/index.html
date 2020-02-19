@@ -1,0 +1,66 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<body>
+	<h1>Pomodoro Home</h1>
+	<p>Welcome to Pomodoro!</p>
+	<h2>Dynamic content</h2>
+	<p>We have the following record counts:</p>
+	<div>
+	<ul class="dynamic">
+		<li><strong>Categories:</strong> {{ num_categorys }} </li>
+		<br>
+		<li><strong>Pomodoros:</strong> {{ num_pomodoros }} </li>
+		<br>
+		<li><strong>Number of Pomodoros Today:</strong> {{ num_pomodoros_today }} </li>
+	</ul>
+	</div>
+
+
+	<h1 class="center"><span onclick="highlight('Pomodoro')" id="searchText">It's Pomodoro time!</span></h1>
+	<h2 id="clock" class="center"></h2>
+	<p>The <a href="https://en.wikipedia.org/wiki/Pomodoro_Technique">pomodoro technique</a> is a widely used time management tool. Get things done faster when you work in spurts.</p>
+	<div class="thin-red-border center font-size">
+		<p>1. 25 minute working period</p>
+		<p>2. 5 minute break</p>
+		<p>3. repeat 1 & 2! (4 times)</p>
+		<p>4. Take a long break</p>
+	</div>
+	<br>
+	<h2 class="center"><span id="bigben" onclick="bigben()">00:00</span></h2>
+
+	<div class="center" id="choices" name="choices">
+		<input id="r1" type="radio" name="timer" value="pomodoro"/>
+		<label for="r1">Pomodoro</label>
+		<input id="r2" type="radio" name="timer" value="short"/>
+		<label for="r2">Short Break</label>
+		<input id="r3" type="radio" name="timer" value="long"/>
+		<label for="r3">Long Break</label>
+	</div>	
+
+
+	<!--<h2 class="center"><span id="pomodoro" onclick="pomodoro()">25:00</span></h2>
+	<h2 class="center"><span id="short" onclick="short()">Short Break - 5:00</span></h2>
+	<h2 class="center"><span id="long" onclick="long()">Long Break - 20:00</span></h2>-->
+	
+	<br>
+	<br>
+	<div class="center">
+		<button type="button" name="start" class="green-background button" id="start">Start</button>
+		<button type="button" name="stop" class="red-background button" id="stop">Stop</button>
+		<button type="button" name="reset" class="blue-background button" id="reset">Reset</button>
+	</div>
+	<h3 class="center"><u>Pomodoro Tally</u></h3>
+	<p id="tally" class="center"></p><br>
+	<br>
+	<form id="helpForm">
+	<label for="helpful">
+		<input id="helpful" value="helpful" type="radio" name="help">Helpful
+	</label>
+	<label for="not helpful">
+		<input id="not helpful" value="not helpful" type="radio" name="help">Not Helpful
+	</label>
+	<button type="submit" class="black-background submit-button" target="_blank">Submit</button>
+	</form>
+{% endblock %}
+</body>
