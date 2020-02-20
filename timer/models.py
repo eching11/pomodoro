@@ -48,4 +48,4 @@ class Pomodoro(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this pomodoro."""
-        return #reverse('pomodoro-detail', args=[str(self.id)])
+        return reverse('pomodoro-detail', args=[str(self.id)])
