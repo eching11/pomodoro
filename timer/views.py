@@ -13,10 +13,15 @@ def index(request):
     # Pomodoro's for today (Tuesday)
     num_pomodoros_today = Pomodoro.objects.filter(day_of_week='Tuesday').count()
     
+    # Number of visits to index, counted by the session variable
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+    
     context = {
         'num_categorys': num_categorys,
         'num_pomodoros': num_pomodoros,
         'num_pomodoros_today': num_pomodoros_today,
+        'num_visits': num_visits,
     }
     
     # Render the HTML template index.html with the data in the context variable
