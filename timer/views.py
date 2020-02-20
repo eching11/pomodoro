@@ -22,20 +22,32 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
 
+# Django Tutorial part 6
 from django.views import generic
 
 class CategoryListView(generic.ListView):
     model = Category
-    context_object_name = 'my_category_list' # template variable
+    context_object_name = 'category_list' # template variable
     #queryset = Category.objects.filter(name__icontains='Coding')[:5] # Get 5 categories containing name coding
-    template_name = 'categories/category_list.html' # specifying template name/location
+    template_name = 'category/category_list.html' # specifying template name/location
 
-class PomodoroDetailView(generic.DetailView):
-    model = Pomodoro
+class CategoryDetailView(generic.DetailView):
+    model = Category
 
 from django.shortcuts import get_object_or_404
 
+def category_detail_view(request, primary_key):
+    category = get_object_or_404(Category, pk=primary_key)
+    return render(request, 'timer/category_detail.html', context={'category': category})
+
+class PomodoroListView(generic.ListView):
+    model = Pomodoro
+    context_object_name = 'pomodoro_list'
+    template_name = 'pomodoro/pomodoro_list.html'
+    
+class PomodoroDetailView(generic.DetailView):
+    model = Pomodoro
+    
 def pomodoro_detail_view(request, primary_key):
     pomodoro = get_object_or_404(Pomodoro, pk=primary_key)
     return render(request, 'timer/pomodoro_detail.html', context={'pomodoro': pomodoro})
-
