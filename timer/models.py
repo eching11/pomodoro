@@ -25,7 +25,7 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this category."""
-        return #reverse('category-detail', args=[str(self.categoryID)])
+        return reverse('category-detail', args=[str(self.categoryID)])
 
     display_category.name = 'Category'
 

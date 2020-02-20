@@ -27,18 +27,17 @@ from django.views import generic
 
 class CategoryListView(generic.ListView):
     model = Category
-    context_object_name = 'category_list' # template variable
+    #context_object_name = 'category_list' # template variable
     #queryset = Category.objects.filter(name__icontains='Coding')[:5] # Get 5 categories containing name coding
-    template_name = 'category/category_list.html' # specifying template name/location
+    #template_name = 'category/category_list.html' # specifying template name/location
 
+from django.shortcuts import get_object_or_404
 class CategoryDetailView(generic.DetailView):
     model = Category
 
-from django.shortcuts import get_object_or_404
-
 def category_detail_view(request, primary_key):
     category = get_object_or_404(Category, pk=primary_key)
-    return render(request, 'timer/category_detail.html', context={'category': category})
+    return #render(request, 'timer/category_detail.html', context={'category': category})
 
 class PomodoroListView(generic.ListView):
     model = Pomodoro
