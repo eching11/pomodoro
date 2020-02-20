@@ -18,23 +18,21 @@ class Category(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return self.name
+        
     def display_category(self):
         """Create a string for the Category. This is required to display category in Admin."""
-        return ', '.join(category.name for category in self.category.all()[:3])
+        return ' ,'.join(category.name for category in self.category.all()[:3])
 
     def get_absolute_url(self):
         """Returns the url to access a detail record for this category."""
-        return reverse('category-detail', args=[str(self.id)])
+        return reverse('category-detail', args=[str(self.categoryID)])
 
     display_category.name = 'Category'
-
-
 
 
 class Pomodoro(models.Model):
     """Model representing a pomodoro (but not specific pomodoro)."""
     task_name = models.TextField(blank=False, help_text='Enter task name for pomodoro')
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, unique=True, help_text='Unique ID for this particular pomodoro across whole library')
 
     # Foreign Key used bc pomodoro can only have one category but a category can have multiple pomodoros.
