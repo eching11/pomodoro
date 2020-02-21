@@ -68,3 +68,14 @@ class PomodoroDetailView(generic.DetailView):
 def pomodoro_detail_view(request, primary_key):
     pomodoro = get_object_or_404(Pomodoro, pk=primary_key)
     return render(request, 'timer/pomodoro_detail.html', context={'pomodoro': pomodoro})
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class PomodoroByUserListView(LoginRequiredMixin, generic.ListView):
+    """Generic class-based view listing pomodoros to current user."""
+    model = Pomodoro
+    template_name='timer/pomodoro_list_done_by_user.html'
+    paginate_by = 10
+    
+    def get_queryset(self):
+        return Pomodoro.objects.filter(doer=self.request.user)
