@@ -20,6 +20,12 @@
 	    		<li><a href="{% url 'index' %}">Home</a></li>
 				<li><a href="{% url 'category' %}">All Categories</a></li>
 				<li><a href="{% url 'pomodoro' %}">All Pomodoros</a></li>
+			  {% if user.is_authenticated %}
+			  	<li><a href="{% url 'my-pomodoros' %}">{{ user.get_username }}'s pomodoros</a></li>
+			  	<li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
+			  {% else %}
+			  	<li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+			  {% endif %}
 	  		  </ul>
 			{% endblock %}
 		  </div>

@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse # reverse used to generate URLs by reversing the URL patterns
+from django.contrib.auth.models import User
 import uuid
 
 # Create your models here.
@@ -37,6 +38,7 @@ class Pomodoro(models.Model):
 
     # Foreign Key used bc pomodoro can only have one category but a category can have multiple pomodoros.
     categoryID = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
+    doer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     day_of_week = models.CharField(max_length=10, help_text='Day of week (i.e. Monday-Sunday)')
     time_of_day = models.DateTimeField(help_text='XX:XX AM or PM')

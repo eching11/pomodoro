@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<h1>Pomodoros done</h1>
+	
+	{% if pomodoro_list %}
+	<ul>
+	
+		{% for pomodoro in pomodoro_list %}
+		<li>
+			<a href="{% url 'pomodoro-detail' pomodoro.pk %}">{{ pomodoro.task_name }}</a> ({{ pomodoro.time_of_day }})
+		</li>
+		{% endfor %}
+	</ul>
+	
+	{% else %}
+		<p>There are no finished pomodoros.</p>
+	{% endif %}
+{% end block %}
+			

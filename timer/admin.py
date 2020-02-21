@@ -30,7 +30,7 @@ admin.site.register(Category, CategoryAdmin)
 # Register the Admin classes for Pomodoro using the decorator
 @admin.register(Pomodoro)
 class PomodoroAdmin(admin.ModelAdmin):
-    list_display = ('task_name', 'minutes', 'id', 'categoryID') #'categoryID', 'minutes')
+    list_display = ('task_name', 'doer', 'minutes', 'id', 'categoryID') #'categoryID', 'minutes')
     list_filter = ('day_of_week', 'time_of_day')
     
     fieldsets = (
@@ -38,7 +38,7 @@ class PomodoroAdmin(admin.ModelAdmin):
             'fields': ['task_name']
             }),
         ('Date Stats', {
-            'fields': ('time_of_day', 'day_of_week')
+            'fields': ('doer', 'time_of_day', 'day_of_week')
             }),
     )
     exclude = ['categoryID', 'id']

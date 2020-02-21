@@ -13,14 +13,32 @@ def index(request):
     # Pomodoro's for today (Tuesday)
     num_pomodoros_today = Pomodoro.objects.filter(day_of_week='Tuesday').count()
     
+    # Number of visits to index, counted by the session variable
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+    
     context = {
         'num_categorys': num_categorys,
         'num_pomodoros': num_pomodoros,
         'num_pomodoros_today': num_pomodoros_today,
+        'num_visits': num_visits,
     }
     
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
+
+# Django Tutorial part 8
+# Restrict views for anonymous users, logged in users can see views only
+from django.contrib.auth.decorators import login_required
+#Restrict to views
+#@login_required
+#def my_view(request) 
+
+# Restrict access in class-based views using LoginRequredMixin
+#from django.contrib.auth.mixins import LoginRequiredMixin
+#class MyView(LoginRequiredMixin, CategoryListView):
+#    login_url = '/login'
+#    redirect_field_name = ''
 
 # Django Tutorial part 6
 from django.views import generic
@@ -34,7 +52,7 @@ class CategoryListView(generic.ListView):
 from django.shortcuts import get_object_or_404
 class CategoryDetailView(generic.DetailView):
     model = Category
-
+      
 def category_detail_view(request, primary_key):
     category = get_object_or_404(Category, pk=primary_key)
     return #render(request, 'timer/category_detail.html', context={'category': category})
@@ -50,3 +68,14 @@ class PomodoroDetailView(generic.DetailView):
 def pomodoro_detail_view(request, primary_key):
     pomodoro = get_object_or_404(Pomodoro, pk=primary_key)
     return render(request, 'timer/pomodoro_detail.html', context={'pomodoro': pomodoro})
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class PomodoroByUserListView(LoginRequiredMixin, generic.ListView):
+    """Generic class-based view listing pomodoros to current user."""
+    model = Pomodoro
+    template_name='timer/pomodoro_list_done_by_user.html'
+    paginate_by = 10
+    
+    def get_queryset(self):
+        return Pomodoro.objects.filter(doer=self.request.user)
