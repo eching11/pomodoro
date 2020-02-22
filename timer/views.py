@@ -79,3 +79,40 @@ class PomodoroByUserListView(LoginRequiredMixin, generic.ListView):
     
     def get_queryset(self):
         return Pomodoro.objects.filter(doer=self.request.user)
+       
+# Django Tutorial part 9 
+from django.shortcuts import render, get_object_or404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
+from timer.forms import EditPomodoroForm
+
+def edit_pomodoro(request, pk):
+    pomodoro = get_object_or_404(Pomodoro, pk=pk)
+    
+    # If this is POST, process the Form data
+    if request.method == 'POST':
+    
+        # Create a form instance and populate it with data from the request (binding)
+        form = EditPomodoroForm(request.POST)
+        
+        # Check if form is valid
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            pomodoro.minutes = form.cleaned_data['edit_minutes']
+            pomodoro.save()
+            
+            # Redirect to a new URL
+            return HttpResponseRedirect(reverse('all-done'))
+            
+    else:
+        proposed_edit_minutes = 30 # Default add 5 to default
+        form = EditPomodoroForm(initial={'edit_minutes': proposed_edit_minutes})
+        
+        context = {
+            'form': form,
+            'pomodoro': pomodoro,
+        }
+        
+        return render(request, 'timer/edit_pomodoro.html', context)
+        
