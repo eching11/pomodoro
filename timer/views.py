@@ -103,8 +103,9 @@ def edit_pomodoro(request, pk):
             pomodoro.save()
             
             # Redirect to a new URL
-            return HttpResponseRedirect(reverse('all-done'))
+            return HttpResponseRedirect(reverse('/'))
             
+   # If this is a GET or any other method, create the default form          
     else:
         proposed_edit_minutes = 30 # Default add 5 to default
         form = EditPomodoroForm(initial={'edit_minutes': proposed_edit_minutes})
