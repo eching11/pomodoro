@@ -123,14 +123,16 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 from timer.models import Pomodoro
+import datetime
 
 class PomodoroCreate(CreateView):
     model = Pomodoro
     fields = '__all__'
+    initial = {'time_of_day': datetime.datetime.now()}
 
 class PomodoroUpdate(UpdateView):
     model = Pomodoro
-    fields = ['task_name', 'categoryID', 'time_of_day', 'day_of_week', 'minutes']
+    fields = ['task_name', 'categoryID', 'day_of_week', 'minutes','time_of_day', 'id']
     
 class PomodoroDelete(DeleteView):
     model = Pomodoro
