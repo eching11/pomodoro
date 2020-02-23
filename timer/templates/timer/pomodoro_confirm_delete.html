@@ -10,5 +10,7 @@
 	{% csrf_token %}
 	<input type="submit" value="Yes, delete.">
 </form>
-
+<form action="/timer/pomodoro/{{pomodoro.id}}">
+	<input type="submit" value="No, take me back."/>
+</form>
 {% endblock %}
