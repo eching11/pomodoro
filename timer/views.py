@@ -81,12 +81,14 @@ class PomodoroByUserListView(LoginRequiredMixin, generic.ListView):
         return Pomodoro.objects.filter(doer=self.request.user)
        
 # Django Tutorial part 9 
-from django.shortcuts import render, get_object_or404
+from django.contrib.auth.decorators import permission_required
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from timer.forms import EditPomodoroForm
 
+#@permission_required('timer.can_edit_pomodoro')
 def edit_pomodoro(request, pk):
     pomodoro = get_object_or_404(Pomodoro, pk=pk)
     
@@ -103,7 +105,7 @@ def edit_pomodoro(request, pk):
             pomodoro.save()
             
             # Redirect to a new URL
-            return HttpResponseRedirect(reverse('/'))
+            return HttpResponseRedirect(reverse('index'))
             
    # If this is a GET or any other method, create the default form          
     else:
@@ -117,3 +119,35 @@ def edit_pomodoro(request, pk):
         
         return render(request, 'timer/edit_pomodoro.html', context)
         
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+from timer.models import Pomodoro
+import datetime
+
+# Pomodoro Create, Update, and Delete Views
+class PomodoroCreate(CreateView):
+    model = Pomodoro
+    fields = '__all__'
+    initial = {'time_of_day': datetime.datetime.now()}
+
+class PomodoroUpdate(UpdateView):
+    model = Pomodoro
+    fields = ['task_name', 'categoryID', 'day_of_week', 'minutes','time_of_day', 'id']
+    
+class PomodoroDelete(DeleteView):
+    model = Pomodoro
+    success_url = reverse_lazy('pomodoro')
+    
+# Category Create, Update, Delete Views
+class CategoryCreate(CreateView):
+    model = Category
+    fields = '__all__'
+
+class CategoryUpdate(UpdateView):
+    model= Category
+    fields = ['name', 'description', 'categoryID']
+    
+class CategoryDelete(DeleteView):
+    model = Category
+    success_url = reverse_lazy('category')
