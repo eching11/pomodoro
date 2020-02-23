@@ -119,3 +119,19 @@ def edit_pomodoro(request, pk):
         
         return render(request, 'timer/edit_pomodoro.html', context)
         
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+from timer.models import Pomodoro
+
+class PomodoroCreate(CreateView):
+    model = Pomodoro
+    fields = '__all__'
+
+class PomodoroUpdate(UpdateView):
+    model = Pomodoro
+    fields = ['task_name', 'categoryID', 'time_of_day', 'day_of_week', 'minutes']
+    
+class PomodoroDelete(DeleteView):
+    model = Pomodoro
+    success_url = reverse_lazy('pomodoros')
