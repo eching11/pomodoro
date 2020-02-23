@@ -9,3 +9,9 @@ urlpatterns = [
     path('pomodoro/<str:pk>', views.PomodoroDetailView.as_view(), name='pomodoro-detail'),
     path('mypomodoros/', views.PomodoroByUserListView.as_view(), name='my-pomodoros'),
 ]
+
+# Add edit-pomodoro page
+from timer import views
+urlpatterns += [
+    path('pomodoro/<str:pk>/edit_pomodoro/', views.edit_pomodoro, name='edit_pomodoro'),
+]

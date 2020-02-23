@@ -45,7 +45,3 @@ urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 
-# Add edit-pomodoro page
-urlpatterns += [
-    path('pomodoro/<uuid:pk>/renew/', views.edit_pomodoro, name='edit_pomodoro'),
-]

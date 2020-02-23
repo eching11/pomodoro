@@ -81,12 +81,14 @@ class PomodoroByUserListView(LoginRequiredMixin, generic.ListView):
         return Pomodoro.objects.filter(doer=self.request.user)
        
 # Django Tutorial part 9 
-from django.shortcuts import render, get_object_or404
+from django.contrib.auth.decorators import permission_required
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from timer.forms import EditPomodoroForm
 
+#@permission_required('timer.can_edit_pomodoro')
 def edit_pomodoro(request, pk):
     pomodoro = get_object_or_404(Pomodoro, pk=pk)
     
@@ -103,7 +105,7 @@ def edit_pomodoro(request, pk):
             pomodoro.save()
             
             # Redirect to a new URL
-            return HttpResponseRedirect(reverse('/'))
+            return HttpResponseRedirect(reverse('index'))
             
    # If this is a GET or any other method, create the default form          
     else:

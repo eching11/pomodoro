@@ -11,7 +11,7 @@ class EditPomodoroForm(forms.Form):
         # Check if number is not less than 25
         if data < 25:
             raise ValidationError(_('Invalid number - must be be between 25 - 50'))
-        else if data > 50:
+        elif data > 50:
             raise ValidationError(_('Invalid number - must be between 25 - 50'))    
         # Check if number is in allowed range
         else:
