@@ -134,4 +134,4 @@ class PomodoroUpdate(UpdateView):
     
 class PomodoroDelete(DeleteView):
     model = Pomodoro
-    success_url = reverse_lazy('pomodoros')
+    success_url = reverse_lazy('pomodoro')
