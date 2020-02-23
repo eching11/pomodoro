@@ -3,4 +3,8 @@
 {% block content %}
     <h1>Category: {{ category.name }}</h1>    
     <p><strong>Description:</strong> {{ category.description }}</p> 
+    
+    <input type="button" onclick="location.href='./{{category.categoryID}}/update';" value="Update"/>
+	<input type="button" onclick="location.href='./{{category.categoryID}}/delete';" value="Delete"/>
+
 {% endblock %}

@@ -1,10 +1,15 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+<body>
     <h1>Pomodoro</h1>
-        
+    <h2><u>Description:</u> {{ pomodoro.task_name }}</h2>    
     <h2><u>Category:</u> {{ pomodoro.categoryID }}</h2>
-    <h2><u>Description:</u> {{ pomodoro.task_name }}</h2>
     
     <p>Started: {{ pomodoro.time_of_day }}</p>
+
+	<input type="button" onclick="location.href='./{{pomodoro.id}}/update';" value="Update"/>
+	<input type="button" onclick="location.href='./{{pomodoro.id}}/delete';" value="Delete"/>
+   
+</body>
 {% endblock %}
