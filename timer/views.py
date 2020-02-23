@@ -125,6 +125,7 @@ from django.urls import reverse_lazy
 from timer.models import Pomodoro
 import datetime
 
+# Pomodoro Create, Update, and Delete Views
 class PomodoroCreate(CreateView):
     model = Pomodoro
     fields = '__all__'
@@ -137,3 +138,16 @@ class PomodoroUpdate(UpdateView):
 class PomodoroDelete(DeleteView):
     model = Pomodoro
     success_url = reverse_lazy('pomodoro')
+    
+# Category Create, Update, Delete Views
+class CategoryCreate(CreateView):
+    model = Category
+    fields = '__all__'
+
+class CategoryUpdate(UpdateView):
+    model= Category
+    fields = ['name', 'description', 'categoryID']
+    
+class CategoryDelete(DeleteView):
+    model = Category
+    success_url = reverse_lazy('category')

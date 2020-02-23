@@ -21,4 +21,7 @@ urlpatterns += [
     path('pomodoro/create/', views.PomodoroCreate.as_view(), name='pomodoro_create'),
     path('pomodoro/<uuid:pk>/update', views.PomodoroUpdate.as_view(), name='pomodoro_update'),
     path('pomodoro/<uuid:pk>/delete', views.PomodoroDelete.as_view(), name='pomodoro_delete'),
+    path('category/create/', views.CategoryCreate.as_view(), name='category_create'),
+    path('category/<uuid:pk>/update', views.CategoryUpdate.as_view(), name='category_update'),
+    path('category/<uuid:pk>/delete', views.CategoryDelete.as_view(), name='category_delete'),
 ]
