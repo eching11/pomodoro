@@ -7,7 +7,7 @@
   <ul>
     {% for pomodoro in pomodoro_list %}
       <li>
-       {{pomodoro.day_of_week}}<a href="{{ pomodoro.get_absolute_url }}">{{ pomodoro.task_name }}</a> 
+       <a href="{{ pomodoro.get_absolute_url }}">{{ pomodoro.task_name }}</a> 
       </li>
     {% endfor %}
   </ul>
