@@ -66,6 +66,7 @@ function zeroTimer(timerName) {
 	document.getElementById("tally").innerHTML = pomodoro.count;
 	if (timerName === "pomodoro") {
 		alert("Great job working on: " + task);
+		window.open("http://127.0.0.1:8000/timer/pomodoro/create/");
 		window.open("https://www.youtube.com/watch?v=DiGUnl7kEOw&feature=youtu.be");
 	}
 };
@@ -73,6 +74,7 @@ function zeroTimer(timerName) {
 // startTimer function from https://stackoverflow.com/a/20618517
 function startTimer(obj, display) {
 	var timer = obj.length * 60, minutes, seconds;
+	
 	stopwatch = setInterval(function() {
 		minutes = parseInt(timer / 60, 10);
 		seconds = parseInt(timer % 60, 10);

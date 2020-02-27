@@ -12,7 +12,7 @@ import uuid
 
 class Category(models.Model):
     """Model representing a pomodoro category."""
-    name = models.CharField(max_length=100, help_text='Enter the pomodoro category')
+    name = models.CharField(max_length=100, help_text='Enter the pomodoro category', default="Uncategorized")
     categoryID = models.UUIDField(primary_key=True, default=uuid.uuid4, unique=True, help_text='Unique identifier for category')
     description = models.TextField(max_length=250, default="", help_text='Brief description')
     
@@ -37,7 +37,7 @@ class Pomodoro(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, unique=True, help_text='Unique ID for this particular pomodoro across whole library')
 
     # Foreign Key used bc pomodoro can only have one category but a category can have multiple pomodoros.
-    categoryID = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
+    categoryID = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, default="Uncategorized")
     doer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     day_of_week = models.CharField(max_length=10, help_text='Day of week (i.e. Monday-Sunday)')

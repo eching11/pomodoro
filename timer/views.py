@@ -151,3 +151,5 @@ class CategoryUpdate(UpdateView):
 class CategoryDelete(DeleteView):
     model = Category
     success_url = reverse_lazy('category')
+    
+    
