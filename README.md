@@ -8,7 +8,7 @@ SQLlite
 
 Set up (First time)
 1) Install virtualenv 
-2) Activate virtualenv: workon nameofenv
+2) Create and activate a new virtualenv
 3) Inside your new a virtual environment, install latest versions of Python3 and Django
 4) Clone this repo to a directory of your choice (i.e. Documents/)
 5) cd into the repo
@@ -23,3 +23,8 @@ Set up (Not first time)
 1) Activate virtualenv: workon nameofenv
 2) Go to http://127.0.0.1:8000/timer
 3) Have fun!
+4) Deactivate virtualenv: deactivate
+
+When making changes
+1) python3 manage.py makemigrations
+2) python3 manage.py migrate
