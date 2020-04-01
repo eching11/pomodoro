@@ -32,6 +32,7 @@ def index(request):
 from django.contrib.auth.decorators import login_required
 #Restrict to views
 #@login_required
+# If the user isn’t logged in, redirect to settings.LOGIN_URL, passing the current absolute path in the query string. Example: /accounts/login/?next=/polls/3/. 
 #def my_view(request) 
 
 # Restrict access in class-based views using LoginRequredMixin
@@ -64,7 +65,7 @@ class PomodoroListView(generic.ListView):
     
 class PomodoroDetailView(generic.DetailView):
     model = Pomodoro
-    
+
 def pomodoro_detail_view(request, primary_key):
     pomodoro = get_object_or_404(Pomodoro, pk=primary_key)
     return render(request, 'timer/pomodoro_detail.html', context={'pomodoro': pomodoro})

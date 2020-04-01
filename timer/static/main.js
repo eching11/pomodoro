@@ -5,7 +5,7 @@ function Timer (name, length) {
 }
 
 // Define timer objects
-var pomodoro = new Timer("pomodoro", 25);
+var pomodoro = new Timer("pomodoro", .25);
 pomodoro.count = 0;
 var shortBreak = new Timer ("short", 5);
 var longBreak = new Timer ("long", 20);
